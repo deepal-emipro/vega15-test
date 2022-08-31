@@ -91,7 +91,7 @@
     </template>
 
     <!--    Remove Temparary Out of Stock -->
-    <record id="theme_clarico_vega.hide_unavailable_text_wishlist_ept" model="ir.ui.view">
+    <!--<record id="theme_clarico_vega.hide_unavailable_text_wishlist_ept" model="ir.ui.view">
         <field name="name">hide_unavailable_text_wishlist_ept</field>
         <field name="inherit_id" search="[('key', '=', 'website_sale_stock_wishlist.product_wishlist')]"/>
         <field name="type">qweb</field>
@@ -99,5 +99,5 @@
         <field name="arch" type="xml">
             <xpath expr="//small[@t-if='wish.product_id.product_tmpl_id._is_sold_out()']" position="replace"/>
         </field>
-    </record>
+    </record>-->
 </odoo>
