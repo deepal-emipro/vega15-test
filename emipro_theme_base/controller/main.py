@@ -289,7 +289,8 @@ class EmiproThemeBaseExtended(WebsiteSaleWishlist):
             for value in attrib_values:
                 if value[0] == 0:
                     ids.append(value[1])
-            domain.append(('product_brand_ept_id.id', 'in', ids))
+            if ids:
+                domain.append(('product_brand_ept_id.id', 'in', ids))
         return domain
 
     @http.route('/hover/color', type='json', auth="public", methods=['POST'], website=True)

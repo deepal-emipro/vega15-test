@@ -95,7 +95,8 @@ odoo.define('website_slider.front_js', function(require) {
                     $("img.lazyload").lazyload();
                 }
                 self.initOwlSlider();
-                if(!self.$target.find('.te_pc_style_main').hasClass('ps_style_4_main') || !self.$target.find('.owl-carousel').hasClass('te_product_slider_banner')) {
+                debugger;
+                if (!(self.$target.find('.te_pc_style_main').hasClass('ps_style_4_main') || self.$target.find('.owl-carousel').hasClass('te_product_slider_banner'))) {
                     self.$target.find(".slider-color-changer").mCustomScrollbar({axis: "x",theme: "dark-thin",alwaysShowScrollbar: 0 });
                 }
                 $(self.$target).find(".js_filter_change").first().addClass("active");
