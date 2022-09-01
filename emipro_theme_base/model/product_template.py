@@ -37,14 +37,14 @@ class ProductTemplate(models.Model):
     def _search_get_detail(self, website, order, options):
         res = super(ProductTemplate, self)._search_get_detail(website=website, order=order, options=options)
         attrib_values = options.get('attrib_values')
-        if self.env['product.template'].sudo()._fields.get('barcode'):
-            res['search_fields'] = res['search_fields'].__add__(['barcode'])
+        res['search_fields'].append('product_variant_ids.barcode')
         curr_website = self.env['website'].sudo().get_current_website()
         if curr_website.enable_smart_search:
             if curr_website.search_in_brands:
-                res['search_fields'].append('product_brand_ept_id')
+                res['search_fields'].append('product_brand_ept_id.name')
             if curr_website.search_in_attributes_and_values:
-                res['search_fields'].append('attribute_line_ids')
+                # pass
+                res['search_fields'].append('attribute_line_ids.value_ids.name')
         if attrib_values:
             ids = []
             # brand Filter
