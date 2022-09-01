@@ -2,9 +2,10 @@
 """
     This model is used to show the tab line filed in product template
 """
+import logging
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
-
+_logger = logging.getLogger(__name__)
 
 class ProductTemplate(models.Model):
     """
@@ -36,7 +37,8 @@ class ProductTemplate(models.Model):
     def _search_get_detail(self, website, order, options):
         res = super(ProductTemplate, self)._search_get_detail(website=website, order=order, options=options)
         attrib_values = options.get('attrib_values')
-        # res['search_fields'].append('barcode')
+        res['search_fields'] = res['search_fields'].__add__(['barcode'])
+        res['fetch_fields'] = res['fetch_fields'].__add__(['barcode'])
         curr_website = self.env['website'].sudo().get_current_website()
         if curr_website.enable_smart_search:
             if curr_website.search_in_brands:
@@ -51,4 +53,5 @@ class ProductTemplate(models.Model):
                     ids.append(value[1])
                     res.get('base_domain', False) and res['base_domain'].append(
                         [('product_brand_ept_id.id', 'in', ids)])
+        _logger.info("######  _search_get_detail response  ########### %s", res)
         return res
