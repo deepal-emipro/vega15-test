@@ -36,7 +36,7 @@ class ProductTemplate(models.Model):
     def _search_get_detail(self, website, order, options):
         res = super(ProductTemplate, self)._search_get_detail(website=website, order=order, options=options)
         attrib_values = options.get('attrib_values')
-        res['search_fields'].append('barcode')
+        # res['search_fields'].append('barcode')
         curr_website = self.env['website'].sudo().get_current_website()
         if curr_website.enable_smart_search:
             if curr_website.search_in_brands:
