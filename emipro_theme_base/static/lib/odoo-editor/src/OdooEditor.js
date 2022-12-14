@@ -1,11 +1,13 @@
 /** @odoo-module */
 
-import { OdooEditor } from '@web_editor/../lib/odoo-editor/src/OdooEditor';
+const OdooEditor = require('@web_editor/../lib/odoo-editor/src/OdooEditor');
 const KEYBOARD_TYPES = { VIRTUAL: 'VIRTUAL', PHYSICAL: 'PHYSICAL', UNKNOWN: 'UKNOWN' };
 const IS_KEYBOARD_EVENT_UNDO = ev => ev.key === 'z' && (ev.ctrlKey || ev.metaKey);
 const IS_KEYBOARD_EVENT_REDO = ev => ev.key === 'y' && (ev.ctrlKey || ev.metaKey);
 const IS_KEYBOARD_EVENT_BOLD = ev => ev.key === 'b' && (ev.ctrlKey || ev.metaKey);
-OdooEditor.prototype._onKeyDown = function _onKeyDown(ev) {
+const closestElement = require('@web_editor/../lib/odoo-editor/src/utils/utils');
+
+OdooEditor._onKeyDown = function _onKeyDown(ev) {
     /*** @override */
     if(!$('#product_configure_model').hasClass('show')) {
         this.keyboardType = ev.key === 'Unidentified' ? KEYBOARD_TYPES.VIRTUAL : KEYBOARD_TYPES.PHYSICAL;
